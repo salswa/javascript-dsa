@@ -17,6 +17,8 @@
  * ----------------------------------------
  * An integer is a power of two if there exists an integer 'x'
  * such that (n === 2^x)
+ *
+ * Examples:
  * isPowerOfTwo(1) = true [2^0]
  * isPowerOfTwo(2) = true [2^1]
  * isPowerOfTwo(5) = false
@@ -95,11 +97,33 @@ function isPowerofTwo2(n) {
 
 /**
  * Using Bitwise Operator
- * In binary, if n that is power of 2, then n&(n-1) = 0.
- * 1 -> 1
- * 2 -> 10
- * 3 -> 100
- * 4 -> 1000
+ *
+ * & operator : The result is 1 if both bits are 1.
+ *
+ * Statement 1: If a number has one and only one bit set in their binary
+ * representation, then it's power of 2
+ * (means in its binary form, only one digit is 1, and all others are 0)
+ *
+ * Statement 2: Binary representation of (n-1) can be obtained by simply
+ * flipping all the bits to the right of rightmost 1 in 'n' and
+ * also including the rightmost 1
+ * for ex. n = 4 = 100 ---> n-1 = 3 = 011
+ * n = 6 = 110 ---> n-1 = 5 = 101
+ *
+ * Based on Statement 1 and 2, in binary, if n is power of 2,
+ * then n & (n-1) = 0.
+ *
+ * n       =  1000  (8 in binary)
+ * n - 1   =  0111  (7 in binary)
+ * --------------------------------
+ * n & n-1 =  0000  ← all bits zero
+ * --------------------------------
+ *
+ * n       =  0101  (5 in binary)
+ * n - 1   =  0100  (4 in binary)
+ * --------------------------------
+ * n & n-1 =  0100  ← not zero
+ * --------------------------------
  */
 
 function isPowerofTwo3(n) {
@@ -112,7 +136,7 @@ function isPowerofTwo3(n) {
  * Time Complexity (Solution 3):
  * ----------------------------------------
  * Big-O : O(1)
- * Reasoning:
+ * Reasoning: Bitwise operations are constant time.
  */
 
 /**
@@ -123,10 +147,10 @@ function isPowerofTwo3(n) {
 
 let getResult = isPowerofTwo;
 //getResult = isPowerofTwo2;
-//getResult = isPowerofTwo3;
+getResult = isPowerofTwo3;
 
 console.log(getResult(0));
-console.log(getResult(1));
+console.log(getResult(3));
 console.log(getResult(2));
 console.log(getResult(4));
 console.log(getResult(5));
